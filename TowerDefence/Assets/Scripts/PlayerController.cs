@@ -11,19 +11,18 @@ namespace Rudrac.TowerDefence
     {
 
         private bool OnTower = true;
-        private bool CanFire = true;
         private bool NearTower;
-        private Vector3 Target;
 
         [SerializeField] float Speed;
-        [SerializeField] float ArrowSpeed = 15;
-        [SerializeField] float turnSpeed = 2;
         [SerializeField] Animator anim;
         [SerializeField] Rigidbody rb;
         [SerializeField] Transform ArrowAimobject;
-        
+        [SerializeField] Tower tower;
+
         public Transform ArrowFirePosition;
         public GameObject Arrow;
+        [HideInInspector] public bool canwalk = true;
+
         Ray InputRay;
         RaycastHit hitpoint;
         // Start is called before the first frame update
@@ -31,6 +30,7 @@ namespace Rudrac.TowerDefence
         {
 
         }
+
 
         // Update is called once per frame
         void Update()
@@ -44,112 +44,61 @@ namespace Rudrac.TowerDefence
             {
                 // calculating the translation vector
                 Vector3 Movement = new Vector3(horizontalInput * Speed * Time.deltaTime, 0, 0);
-               
-                //applying vector to transform
-                transform.Translate(Movement);
+
+
+
+                if (canwalk)
+                {
+                    anim.SetFloat("MovementSpeed", horizontalInput);
+
+                    //applying vector to transform
+                    transform.Translate(Movement);
+                }
+                else
+                {
+                    anim.SetFloat("MovementSpeed", 0);
+                }
 
                 if (verticalInput > 0 && NearTower)
                 {
                     //TODO: Climb Up the Tower
+                    transform.position = /*transform.TransformPoint(*/tower.TopPos.position;
+                    OnTower = true;
                 }
             }
             else
             {
+                anim.SetFloat("MovementSpeed", 0);
+
                 if (verticalInput < 0)
                 {
                     //TODO: Climb down the Tower
+                    transform.position = tower.BottomPos.position;
+                    OnTower = false;
                 }
             }
             #endregion
 
-            #region PlayerInput to Fire
-            if (Input.GetMouseButtonDown(0))
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Tower"))
             {
-                InputRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-               
-
-                if (Physics.Raycast(InputRay, out hitpoint,100) && CanFire)
-                {
-                  //  hitpoint.point = new Vector3(hitpoint.point.x, hitpoint.point.y, 0);
-                    //Fire Arrow
-                    StartCoroutine(FireArrow(hitpoint.point));
-
-                }
+                NearTower = true;
+                tower = other.GetComponent<Tower>();
             }
-            #endregion
         }
 
-        private void OnDrawGizmos()
+        private void OnTriggerExit(Collider other)
         {
-            Gizmos.DrawLine(InputRay.origin, hitpoint.point);
-            Gizmos.DrawWireSphere(hitpoint.point,1);
+            if (other.CompareTag("Tower"))
+            {
+                NearTower = false;
+                tower = null;
+            }
         }
 
-        private IEnumerator FireArrow(Vector3 TargetPosition)
-        {
-            //Target = TargetPosition;
-            CanFire = false;
-            //TargetPosition.z = 0;
-            //Vector3 direction = (TargetPosition - ArrowFirePosition.position).normalized;
-            //Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-            //transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed);
-
-            //float? angle = RotateHands();
-
-
-            //Creating arrow
-            GameObject arrow = Instantiate(Arrow, ArrowFirePosition.position, Quaternion.identity);
-            //adding projectile values
-            projectile projectile = arrow.GetComponent<projectile>();
-            projectile.TargetObjectTF = TargetPosition;
-            projectile.Launch();
-
-            anim.SetTrigger("FireArrow");
-            
-            yield return new WaitForSeconds(1.5f);
-
-            CanFire = true;
-        }
-
-        //float? CalculateAngle(bool low)
-        //{
-        //    Vector3 targetDir = ArrowAimobject.position - Target;
-        //    float y = targetDir.y;
-        //    targetDir.y = 0;
-        //    float x = targetDir.magnitude;
-        //    float gravity = 9.81f;
-        //    float sSqr = ArrowSpeed * ArrowSpeed;
-        //    float underTheSqrRoot = (sSqr * sSqr) - gravity * (gravity * x * x + 2 * y * sSqr);
-        //    Debug.LogError(underTheSqrRoot);
-        //    if (underTheSqrRoot >= 0f)
-        //    {
-        //        float root = Mathf.Sqrt(underTheSqrRoot);
-        //        float highAngle = sSqr + root;
-        //        float lowAngle = sSqr - root;
-        //        if (low)
-        //            return (Mathf.Atan2(lowAngle, gravity * x) * Mathf.Rad2Deg);
-        //        else
-        //            return (Mathf.Atan2(highAngle, gravity * x) * Mathf.Rad2Deg);
-        //    }
-        //    else
-        //    {
-        //        return null;
-        //    }
-        //}
-
-        //float? RotateHands()
-        //{
-        //    float? angle = CalculateAngle(true);
-            
-        //    Debug.LogError(angle);
-
-        //    if(angle!= null)
-        //    {
-        //       ArrowAimobject.localEulerAngles = new Vector3(360f - (float)angle, 0, 0);
-        //    }
-            
-        //    return angle;
-        //}
     }
 
 }
