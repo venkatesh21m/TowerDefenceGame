@@ -2,14 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rotation : MonoBehaviour
+namespace Rudrac.TowerDefence.Utills
 {
-    public Vector3 rotationAxis;
-
-   
-    // Update is called once per frame
-    void Update()
+  
+    public class Rotation : MonoBehaviour
     {
-        transform.Rotate(rotationAxis * Time.deltaTime);
+        public Vector3 rotationAxis;
+
+
+        // Update is called once per frame
+        public void Update()
+        {
+            transform.Rotate(rotationAxis * Time.deltaTime);
+        }
     }
 }
