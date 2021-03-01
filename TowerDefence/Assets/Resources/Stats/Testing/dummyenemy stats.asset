@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fd9871e8495de6498227ed6b20d4a54, type: 3}
+  m_Name: dummyenemy stats
+  m_EditorClassIdentifier: 
+  _Speed: 0
+  _MaxHealth: 10.3
+  _CurrentHealth: 11.1
+  _DamageType: 2
+  _Weekness: 8
+  _Resistance: 16
+  _AttackRate: 1.19
+  _HitPoints: 0
+  _Gold: 0
+  _Cost: 0
+  _Experience: 0
+  _CurrentRank:
+    RankName: 
+    _Ranknumber: 0
+    _RequiredExperience: 0
+    _MaxHealth: 0
+    _AttackRate: 0
+    _Hitpoints: 0
+  _Ranks: []

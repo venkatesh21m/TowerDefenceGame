@@ -61,7 +61,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04d621b639e4f77498221e56acb22b2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackDef: {fileID: 11400000, guid: 6b046c9d1795e49468050263052cb44b, type: 2}
   rigid: {fileID: 2866569490883875421}
+  stats: {fileID: 0}
 --- !u!1 &3248442483510091324
 GameObject:
   m_ObjectHideFlags: 0
