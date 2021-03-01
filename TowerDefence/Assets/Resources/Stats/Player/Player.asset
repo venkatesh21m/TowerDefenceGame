@@ -12,14 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fd9871e8495de6498227ed6b20d4a54, type: 3}
   m_Name: Player
   m_EditorClassIdentifier: 
-  SetManually: 1
   _Speed: 0.8
-  _MaxHealth: 100
-  _CurrentHealth: 100
-  _DamageType: 3
+  _MaxHealth: 10
+  _CurrentHealth: 10
+  _DamageType: 2
   _Weekness: 4
-  _Resistance: 0
-  _AttackRate: 0
+  _Resistance: 1
+  _AttackRate: 1.25
   _HitPoints: 0
   _Gold: 0
   _Cost: 0
@@ -33,13 +32,13 @@ MonoBehaviour:
     _Hitpoints: 0
   _Ranks:
   - RankName: Noob
-    _Ranknumber: 0
+    _Ranknumber: 1
     _RequiredExperience: 0
     _MaxHealth: 0
     _AttackRate: 0
     _Hitpoints: 0
   - RankName: beginer
-    _Ranknumber: 1
+    _Ranknumber: 2
     _RequiredExperience: 0
     _MaxHealth: 0
     _AttackRate: 0
