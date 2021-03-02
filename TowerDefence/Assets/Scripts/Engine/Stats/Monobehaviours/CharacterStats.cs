@@ -79,6 +79,10 @@ namespace Rudrac.TowerDefence.Stats
 
         #region Accessors
 
+        public float GetSpeed()
+        {
+            return CharacterStatsDefinition._Speed;
+        }
         public float GetCurrentHealth()
         {
             return CharacterStatsDefinition._CurrentHealth;
@@ -133,6 +137,11 @@ namespace Rudrac.TowerDefence.Stats
         public float GetAttackRate()
         {
             return CharacterStatsDefinition._AttackRate;
+        }
+
+        public Combat.Weapon GetWeapon()
+        {
+            return CharacterStatsDefinition._Weapon;
         }
 
         #endregion

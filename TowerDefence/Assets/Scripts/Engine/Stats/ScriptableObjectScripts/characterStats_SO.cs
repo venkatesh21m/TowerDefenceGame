@@ -52,6 +52,8 @@ namespace Rudrac.TowerDefence
         [Tooltip("amount of damage this character can cause on attack")]
         public float _HitPoints;
 
+        public Combat.Weapon _Weapon;
+
 
 
         //curency
