@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fd9871e8495de6498227ed6b20d4a54, type: 3}
   m_Name: grunt
   m_EditorClassIdentifier: 
-  _Speed: 0
+  _Speed: 1
   _MaxHealth: 0
   _CurrentHealth: 0
   _DamageType: 4
@@ -20,6 +20,7 @@ MonoBehaviour:
   _Resistance: 1
   _AttackRate: 0.8
   _HitPoints: 5
+  _Weapon: {fileID: 11400000, guid: d8290c7c0b0876443bbf3868fb7bd094, type: 2}
   _Gold: 0
   _Cost: 20
   _Experience: 0
@@ -27,7 +28,7 @@ MonoBehaviour:
     RankName: 
     _Ranknumber: 0
     _RequiredExperience: 0
-    _MaxHealth: 0
     _AttackRate: 0
     _Hitpoints: 0
+    _MaxHealth: 0
   _Ranks: []

@@ -41,9 +41,11 @@ namespace Rudrac.TowerDefence.Combat
                 transform.parent = other.transform;
                 //Create attack
                 var attack = attackDef.CreateAttack(stats, other.collider.GetComponent<CharacterStats>());
-                
+
+                Debug.Log("enemy collided");
+
                 //Get all attackables on the enemy
-                var attackables = other.collider.GetComponents<IAttackable>();
+                var attackables = other.collider.GetComponentsInParent<IAttackable>();
 
                 //call interfase function on each attackables
                 foreach (IAttackable attackable in attackables)

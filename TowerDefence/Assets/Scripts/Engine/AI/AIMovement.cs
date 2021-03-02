@@ -21,16 +21,21 @@ namespace Rudrac.TowerDefence.AI
         
         private void Start()
         {
+            stats = FindObjectOfType<Stats.CharacterStats>();
+
+            agent.speed = stats.GetSpeed();
             agent.SetDestination(Target.position);
         }
 
         void Update()
         {
+            anim.SetFloat("MovementSpeed", agent.velocity.magnitude);
             if (Vector3.Distance(Target.position, transform.position) < stats.GetWeapon().Range)
             {
                 if (canAttack)
                 {
                     canAttack = false;
+                    anim.SetTrigger("Attack");
                     Invoke("ResetAttack", stats.GetAttackRate());
                 }
             }
@@ -48,7 +53,6 @@ namespace Rudrac.TowerDefence.AI
             {
                 Target = other.transform;
                 agent.SetDestination(Target.position);
-
             }
         }
 
