@@ -3,21 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomPropertyDrawer(typeof(ConditionalHideatribute))lic class ConditionalHidePropertyDrawer : PropertyDrawer
+[CustomPropertyDrawer(typeof(ConditionalHideatribute))]
+public class ConditionalHidePropertyDrawer : PropertyDrawer
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-
+   
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
         //get the attribute data
@@ -61,7 +50,7 @@ using UnityEditor;
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
-        ConditionalHideAttribute condHAtt = (ConditionalHideAttribute)attribute;
+        ConditionalHideatribute condHAtt = (ConditionalHideatribute)attribute;
         bool enabled = GetConditionalHideAttributeResult(condHAtt, property);
 
         if (!condHAtt.HideInInspector || enabled)

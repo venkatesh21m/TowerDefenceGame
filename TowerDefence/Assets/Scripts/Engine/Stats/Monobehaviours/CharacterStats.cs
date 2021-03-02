@@ -51,6 +51,11 @@ namespace Rudrac.TowerDefence.Stats
             CharacterStatsDefinition._DamageType = weapon.damagetype;
         }
 
+        internal void removeWeapon()
+        {
+            shootScript.Arrow = null;
+        }
+
         #endregion
 
         #region Stat Decreasers

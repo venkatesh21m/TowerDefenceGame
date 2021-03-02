@@ -7,15 +7,13 @@ namespace Rudrac.TowerDefence.Inventory
 {
     public class Inventory : MonoBehaviour
     {
-
         public static Inventory instance;
-
 
         public Stats.CharacterStats stats;
         public Image[] hotbarImages;
 
         public List<ItemPickUP_SO> inventoryitmes;
-
+        
         int currentID;
         // Start is called before the first frame update
         void Start()
@@ -57,8 +55,9 @@ namespace Rudrac.TowerDefence.Inventory
             hotbarImages[currentID].transform.parent.GetComponent<Image>().color = Color.white;
             hotbarImages[id - 1].transform.parent.GetComponentInParent<Image>().color = Color.green;
             currentID = id - 1;
-
+            if (inventoryitmes[id - 1] == null) stats.removeWeapon();
             inventoryitmes[id - 1].UseItem(stats);
         }
+    
     }
 }

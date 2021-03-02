@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
-using System;
 
-[AttributeUsage(AttributeTargets.Field | AttributeTargets.Property |
-    AttributeTargets.Class | AttributeTargets.Struct, Inherited = true)]
+
+//[AttributeUsage(AttributeTargets.Field | AttributeTargets.Property | AttributeTargets.Enum |
+//    AttributeTargets.Class | AttributeTargets.Struct, Inherited = true)]
 public class ConditionalHideatribute : PropertyAttribute
 {
     public string ConditionalSourceField = "";
@@ -23,7 +22,6 @@ public class ConditionalHideatribute : PropertyAttribute
         this.ConditionalSourceField = conditionalSourceField;
         this.HideInInspector = hideInInspector;
     }
-
-
+  
    
 }

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c205162ed0e39d4996a95b49e2ef7f7, type: 3}
   m_Name: Archer
   m_EditorClassIdentifier: 
-  TroopPrefab: {fileID: 0}
+  TroopPrefab: {fileID: 6901766849558596342, guid: 74557ed45ea2d7f4fb6136a5161618df, type: 3}
   numberofCharacters: 5

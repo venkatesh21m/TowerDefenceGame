@@ -17,9 +17,11 @@ namespace Rudrac.TowerDefence.Inventory
         public SkillType skilltype;
 
         [Header("For Skill")]
+        //[ConditionalHide("skilltype", false)]
         public Combat.Weapon SkillDefinition;
 
         [Header("For Troop")]
+        //[ConditionalHide("skilltype", false)]
         public Combat.Troop TroopDefinition;
       
         //[Header("For Troop")]
@@ -35,6 +37,11 @@ namespace Rudrac.TowerDefence.Inventory
                 case SkillType.Troop:
                     //get troop prefab
                     //instantiate in the level
+                    for (int i = 0; i < TroopDefinition.numberofCharacters; i++)
+                    {
+                        Instantiate(TroopDefinition.TroopPrefab);
+                    }
+                    stats.removeWeapon();
                     break;
                 default:
                     break;
