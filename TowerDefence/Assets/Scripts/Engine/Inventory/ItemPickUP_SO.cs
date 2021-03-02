@@ -21,7 +21,7 @@ namespace Rudrac.TowerDefence.Inventory
 
         [Header("For Troop")]
         public Combat.Troop TroopDefinition;
-
+      
         //[Header("For Troop")]
         //Troop definition
 
