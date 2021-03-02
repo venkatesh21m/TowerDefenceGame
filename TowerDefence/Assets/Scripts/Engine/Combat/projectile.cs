@@ -38,6 +38,10 @@ namespace Rudrac.TowerDefence.Combat
 
             if (other.collider.CompareTag("Enemy") && !TouchingGround)
             {
+                TouchingGround = true;
+                rigid.isKinematic = true;
+                rigid.Sleep();
+
                 transform.parent = other.transform;
                 //Create attack
                 var attack = attackDef.CreateAttack(stats, other.collider.GetComponent<CharacterStats>());
@@ -45,7 +49,8 @@ namespace Rudrac.TowerDefence.Combat
                 Debug.Log("enemy collided");
 
                 //Get all attackables on the enemy
-                var attackables = other.collider.GetComponentsInParent<IAttackable>();
+                var attackables = other.collider.GetComponentsInParent
+                    <IAttackable>();
 
                 //call interfase function on each attackables
                 foreach (IAttackable attackable in attackables)
@@ -53,8 +58,7 @@ namespace Rudrac.TowerDefence.Combat
                     attackable.OnAttack(stats.gameObject, attack);
                 }
 
-                TouchingGround = true;
-                rigid.isKinematic = true;
+               
                 Destroy(gameObject, 3);
             }
         }

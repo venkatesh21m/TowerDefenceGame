@@ -9,12 +9,16 @@ namespace Rudrac.TowerDefence.Stats
     public class CharacterStats : MonoBehaviour
     {
         [SerializeField] characterStats_SO CharacterStatsDefinition;
-
+        public bool enemy;
         public PointAim shootScript;
         
         // Start is called before the first frame update
         void Start()
         {
+            if (enemy)
+            {
+                CharacterStatsDefinition = Instantiate(CharacterStatsDefinition);
+            }
            
         }
 

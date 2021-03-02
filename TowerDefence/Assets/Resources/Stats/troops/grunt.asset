@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: grunt
   m_EditorClassIdentifier: 
   _Speed: 1
-  _MaxHealth: 0
-  _CurrentHealth: 0
+  _MaxHealth: 20
+  _CurrentHealth: 10
   _DamageType: 4
   _Weekness: 1
   _Resistance: 1
