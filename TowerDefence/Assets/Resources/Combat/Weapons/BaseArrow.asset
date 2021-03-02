@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05f2a89f383a34749a4172a9a08132f4, type: 3}
   m_Name: BaseArrow
   m_EditorClassIdentifier: 
-  Cooldown: 0
-  Range: 0
-  MinDamage: 0
-  MaxDamage: 0
-  CriticalMultiplier: 0
-  CriticalChance: 0
-  weapomPrefab: {fileID: 0}
-  damagetype: 3
+  Cooldown: 1
+  Range: 30
+  MinDamage: 1
+  MaxDamage: 5
+  CriticalMultiplier: 2
+  CriticalChance: 0.3
+  weapomPrefab: {fileID: 2866569490883875428, guid: b23e792106892144ab27f4dd3b030a3a, type: 3}
+  damagetype: 2
+  attackRate: 0
+  weaponststs: {fileID: 11400000, guid: 56cffd0cda0581a48b772507a87c1a58, type: 2}

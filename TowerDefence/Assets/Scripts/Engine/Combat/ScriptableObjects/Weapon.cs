@@ -10,11 +10,12 @@ namespace Rudrac.TowerDefence.Combat
     {
         //reference to the weapon arrow
         //if player selects this prefab will be fired
-        public Rigidbody weapomPrefab;
+        public GameObject weapomPrefab;
         
         //Damage types of this weapon
         [EnumFlagsAttribute]
         public DamageType damagetype;
+        public float attackRate;
         [Space]
         public Stats.WeaponStats weaponststs;
 

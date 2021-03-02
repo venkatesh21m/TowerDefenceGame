@@ -9,10 +9,10 @@ namespace Rudrac.TowerDefence.Stats
     {
         public float HitPoint;
         public float Experiecne;
-        public CharacterRank _CurrentRank;
+        public Rank _CurrentRank;
 
         [Header("Ranks info")]
-        public CharacterRank[] Ranks;
+        public Rank[] Ranks;
 
     }
 }

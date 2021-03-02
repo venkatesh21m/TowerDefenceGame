@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Rudrac.TowerDefence;
 
 namespace Rudrac.TowerDefence.Stats
 {
@@ -8,6 +10,8 @@ namespace Rudrac.TowerDefence.Stats
     {
         [SerializeField] characterStats_SO CharacterStatsDefinition;
 
+        public PointAim shootScript;
+        
         // Start is called before the first frame update
         void Start()
         {
@@ -34,7 +38,19 @@ namespace Rudrac.TowerDefence.Stats
         {
             CharacterStatsDefinition.AddExperience(amount);
         }
-       
+
+        internal void changeWeapon(Combat.Weapon weapon)
+        {
+            //change the arrowprefab
+            shootScript.Arrow = weapon.weapomPrefab;
+
+            //change character attackrate
+            CharacterStatsDefinition._AttackRate = weapon.attackRate;
+
+            //change damageType
+            CharacterStatsDefinition._DamageType = weapon.damagetype;
+        }
+
         #endregion
 
         #region Stat Decreasers
