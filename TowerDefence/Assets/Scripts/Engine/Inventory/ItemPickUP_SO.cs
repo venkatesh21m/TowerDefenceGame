@@ -19,6 +19,9 @@ namespace Rudrac.TowerDefence.Inventory
         [Header("For Skill")]
         public Combat.Weapon SkillDefinition;
 
+        [Header("For Troop")]
+        public Combat.Troop TroopDefinition;
+
         //[Header("For Troop")]
         //Troop definition
 
@@ -30,7 +33,8 @@ namespace Rudrac.TowerDefence.Inventory
                     stats.changeWeapon(SkillDefinition);
                     break;
                 case SkillType.Troop:
-                    //
+                    //get troop prefab
+                    //instantiate in the level
                     break;
                 default:
                     break;
