@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Rudrac.TowerDefence.Combat;
+using Rudrac.TowerDefence.Stats;
 
 namespace Rudrac.TowerDefence.AI
 {
-
-    
     public class AIMovement : MonoBehaviour
     {
         public Direction direction;
@@ -18,7 +18,7 @@ namespace Rudrac.TowerDefence.AI
         bool attacking = false;
         bool canAttack = true;
         public Transform Target;
-        
+
         private void Start()
         {
             stats = FindObjectOfType<Stats.CharacterStats>();
@@ -29,22 +29,27 @@ namespace Rudrac.TowerDefence.AI
 
         void Update()
         {
-            anim.SetFloat("MovementSpeed", agent.velocity.magnitude);
+            if(agent != null)
+                anim.SetFloat("MovementSpeed", agent.velocity.magnitude);
+
+            if (Target == null)
+            {
+                Target = FindObjectOfType<Tower>().transform;
+                agent.SetDestination(Target.position);
+            }
+
             if (Vector3.Distance(Target.position, transform.position) < stats.GetWeapon().Range)
             {
                 if (canAttack)
                 {
                     canAttack = false;
+                    Attack();
                     anim.SetTrigger("Attack");
                     Invoke("ResetAttack", stats.GetAttackRate());
                 }
             }
 
-            if(Target == null)
-            {
-                Target = FindObjectOfType<Tower>().transform;
-                agent.SetDestination(Target.position);
-            }
+           
         }
 
         private void OnTriggerEnter(Collider other)
@@ -59,6 +64,22 @@ namespace Rudrac.TowerDefence.AI
         void ResetAttack()
         {
             canAttack = true;
+        }
+
+        public void Attack()
+        {
+            var attack = stats.GetWeapon().CreateAttack(stats, Target.GetComponent<CharacterStats>());
+
+            Debug.Log("enemy collided");
+
+            //Get all attackables on the enemy
+            var attackables = Target.GetComponentsInParent<IAttackable>();
+
+            //call interfase function on each attackables
+            foreach (IAttackable attackable in attackables)
+            {
+                attackable.OnAttack(stats.gameObject, attack);
+            }
         }
 
     }

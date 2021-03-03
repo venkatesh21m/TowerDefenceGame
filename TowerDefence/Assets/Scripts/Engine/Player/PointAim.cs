@@ -103,8 +103,9 @@ namespace Rudrac.TowerDefence
            Invoke("ResetShoot", 1.25f);
            GameObject arrow = Instantiate(Arrow, ArrowSpawnPos.position, ArrowSpawnPos.rotation);
            arrow.GetComponent<Rigidbody>().velocity = ArrowSpawnPos.right * launchspeed;
-            arrow.GetComponent<Combat.projectile>().stats = GetComponent<Stats.CharacterStats>();
+           arrow.GetComponent<Combat.projectile>().stats = GetComponent<Stats.CharacterStats>();
            Asource.PlayOneShot(ArrowFiringClip);
+       
         }
 
 

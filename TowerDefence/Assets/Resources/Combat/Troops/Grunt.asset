@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c205162ed0e39d4996a95b49e2ef7f7, type: 3}
   m_Name: Grunt
   m_EditorClassIdentifier: 
-  TroopPrefab: {fileID: 0}
+  TroopPrefab: {fileID: 1968321415656363417, guid: 9f52015d43fcbb742a443acfcfcb44d8, type: 3}
   numberofCharacters: 5
