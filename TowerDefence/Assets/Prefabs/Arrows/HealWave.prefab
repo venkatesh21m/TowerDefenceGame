@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2866569490883875423}
   - component: {fileID: 2866569490883875421}
-  - component: {fileID: 492556652}
+  - component: {fileID: 8605927242597697159}
   m_Layer: 6
   m_Name: HealWave
   m_TagString: Untagged
@@ -49,7 +49,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 2
---- !u!114 &492556652
+--- !u!114 &8605927242597697159
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -58,12 +58,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 2866569490883875428}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04d621b639e4f77498221e56acb22b2e, type: 3}
+  m_Script: {fileID: 11500000, guid: 68a752b5d9840244bacacb680650d74a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDef: {fileID: 11400000, guid: 6b046c9d1795e49468050263052cb44b, type: 2}
+  attackDef: {fileID: 11400000, guid: d6232a84b8ac14943b115739c90ce3f8, type: 2}
   rigid: {fileID: 2866569490883875421}
+  TouchingGround: 0
   stats: {fileID: 0}
+  _object: {fileID: 0}
+  HealthEffectt: {fileID: 519587605101541651, guid: e9888392d1a165b4aabca0eea90e16cf, type: 3}
+  radius: 0.75
+  eachfiredistance: 2
+  FireTime: 3
 --- !u!1 &3248442483510091324
 GameObject:
   m_ObjectHideFlags: 0
