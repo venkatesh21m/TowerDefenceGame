@@ -19,5 +19,6 @@ MonoBehaviour:
   CriticalMultiplier: 0
   CriticalChance: 0
   weapomPrefab: {fileID: 0}
-  damagetype: 1
+  damagetype: 3
+  attackRate: 5
   weaponststs: {fileID: 0}

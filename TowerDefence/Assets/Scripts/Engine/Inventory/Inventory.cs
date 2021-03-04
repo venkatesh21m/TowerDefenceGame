@@ -10,7 +10,7 @@ namespace Rudrac.TowerDefence.Inventory
         public static Inventory instance;
 
         public Stats.CharacterStats stats;
-        public Image[] hotbarImages;
+        public UI.InventoryUiScript[] hotbarUIitems;
 
         public List<ItemPickUP_SO> inventoryitmes;
         
@@ -22,10 +22,12 @@ namespace Rudrac.TowerDefence.Inventory
             {
                 if (inventoryitmes[i] != null)
                 {
-                    hotbarImages[i].sprite = inventoryitmes[i].itemIcon;
-                    hotbarImages[i].GetComponentInChildren<TMPro.TMP_Text>().text = inventoryitmes[i].itemName;
+                    hotbarUIitems[i].setDetails(inventoryitmes[i]);
                 }
             }
+
+            UseItem(1);
+
         }
 
         // Update is called once per frame
@@ -55,12 +57,25 @@ namespace Rudrac.TowerDefence.Inventory
 
         public void UseItem(int id)
         {
-            hotbarImages[currentID].transform.parent.GetComponent<Image>().color = Color.white;
-            hotbarImages[id - 1].transform.parent.GetComponentInParent<Image>().color = Color.green;
-            currentID = id - 1;
-            if (inventoryitmes[id - 1] == null) stats.removeWeapon();
-            inventoryitmes[id - 1].UseItem(stats);
+            for (int i = 0; i < hotbarUIitems.Length; i++)
+            {
+                if (i == id - 1)
+                {
+                    hotbarUIitems[i].selected(inventoryitmes[i]);
+                    if (inventoryitmes[i] == null) stats.removeWeapon();
+                    inventoryitmes[i].UseItem(stats);
+                    currentID = i;
+
+                }
+                else
+                    hotbarUIitems[i].notselected();
+            }
         }
-    
+
+        public void StartTimer()
+        {
+            hotbarUIitems[currentID].startTimer();
+        }
+
     }
 }

@@ -20,5 +20,5 @@ MonoBehaviour:
   CriticalChance: 0.5
   weapomPrefab: {fileID: 2866569490883875428, guid: 485aa8e9ca38ba8409072a5fc63fd9d9, type: 3}
   damagetype: 18
-  attackRate: 0
+  attackRate: 15
   weaponststs: {fileID: 11400000, guid: 8aac2d20317928542aa715c91bb1be58, type: 2}
