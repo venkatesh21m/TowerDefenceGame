@@ -23,6 +23,9 @@ namespace Rudrac.TowerDefence.Combat
         public float thunderRepeatingTime;
         public float radius;
         public float chargeDownTime = 0.5f;
+        [Space]
+        public AudioSource Asource;
+        public AudioClip thunderSound;
 
         // Start is called before the first frame update
         void Start()
@@ -34,6 +37,7 @@ namespace Rudrac.TowerDefence.Combat
 
        void DoLighning()
         {
+            Asource.PlayOneShot(thunderSound);
             Ray newRay = new Ray(new Vector3(Random.Range(transform.position.x - 2, transform.position.x + 2),transform.position.y-0.6f,-.8f), Vector3.down);
             RaycastHit hit;
             if(Physics.Raycast(newRay, out hit))
@@ -48,6 +52,7 @@ namespace Rudrac.TowerDefence.Combat
                     Attack();
                 }
             }
+           
         }
 
         public void Attack()
