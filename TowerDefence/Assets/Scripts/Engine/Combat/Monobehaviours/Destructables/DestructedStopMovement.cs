@@ -11,10 +11,12 @@ namespace Rudrac.TowerDefence.Combat
         public void OnDestruction(GameObject destroyer)
         {
             agent = GetComponent<NavMeshAgent>();
-            agent.velocity = Vector3.zero;
-            agent.SetDestination(transform.position);
-            agent.enabled = false;
-            Destroy(agent);
+            if (agent != null)
+            {
+                agent.velocity = Vector3.zero;
+                agent.enabled = false;
+                Destroy(agent);
+            }
         }
     }
 }

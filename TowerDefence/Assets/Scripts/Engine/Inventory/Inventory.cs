@@ -20,8 +20,11 @@ namespace Rudrac.TowerDefence.Inventory
         {
             for (int i = 0; i < 10; i++)
             {
-                if(inventoryitmes[i] != null)
+                if (inventoryitmes[i] != null)
+                {
                     hotbarImages[i].sprite = inventoryitmes[i].itemIcon;
+                    hotbarImages[i].GetComponentInChildren<TMPro.TMP_Text>().text = inventoryitmes[i].itemName;
+                }
             }
         }
 

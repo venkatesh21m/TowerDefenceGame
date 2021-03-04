@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05f2a89f383a34749a4172a9a08132f4, type: 3}
   m_Name: IceWave
   m_EditorClassIdentifier: 
-  Cooldown: 0
-  Range: 0
-  MinDamage: 0
-  MaxDamage: 0
-  CriticalMultiplier: 0
-  CriticalChance: 0
-  weapomPrefab: {fileID: 0}
-  damagetype: 5
+  Cooldown: 5
+  Range: 30
+  MinDamage: 5
+  MaxDamage: 5
+  CriticalMultiplier: 3
+  CriticalChance: 0.2
+  weapomPrefab: {fileID: 2866569490883875428, guid: 8193a0f4075ca9a4d9dd1c0509726113, type: 3}
+  damagetype: 32
+  attackRate: 0
+  weaponststs: {fileID: 11400000, guid: 3f8c9741a409a8b4fa67972de2968290, type: 2}

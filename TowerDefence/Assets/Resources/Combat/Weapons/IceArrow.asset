@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: IceArrow
   m_EditorClassIdentifier: 
   Cooldown: 0
-  Range: 0
-  MinDamage: 0
-  MaxDamage: 0
-  CriticalMultiplier: 0
-  CriticalChance: 0
-  weapomPrefab: {fileID: 0}
-  damagetype: 5
+  Range: 30
+  MinDamage: 5
+  MaxDamage: 10
+  CriticalMultiplier: 2
+  CriticalChance: 0.2
+  weapomPrefab: {fileID: 2866569490883875428, guid: 9c448816eb3379b469581313a203497d, type: 3}
+  damagetype: 32
+  attackRate: 0
+  weaponststs: {fileID: 11400000, guid: 52534045c57258f45851f973d0525e39, type: 2}

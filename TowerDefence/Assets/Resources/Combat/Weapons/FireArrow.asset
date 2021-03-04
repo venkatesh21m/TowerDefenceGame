@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05f2a89f383a34749a4172a9a08132f4, type: 3}
   m_Name: FireArrow
   m_EditorClassIdentifier: 
-  Cooldown: 0
-  Range: 0
-  MinDamage: 0
-  MaxDamage: 0
-  CriticalMultiplier: 0
-  CriticalChance: 0
+  Cooldown: 1
+  Range: 30
+  MinDamage: 5
+  MaxDamage: 10
+  CriticalMultiplier: 2
+  CriticalChance: 0.3
   weapomPrefab: {fileID: 2866569490883875428, guid: 90b2e627b457b1e4cbb8f751d43d2bc2, type: 3}
-  damagetype: 4
+  damagetype: 16
   attackRate: 0
-  weaponststs: {fileID: 0}
+  weaponststs: {fileID: 11400000, guid: 6b459e90e0024b841a4037bf03dca857, type: 2}

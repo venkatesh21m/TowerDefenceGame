@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05f2a89f383a34749a4172a9a08132f4, type: 3}
   m_Name: ThunderArrow
   m_EditorClassIdentifier: 
-  Cooldown: 0
-  Range: 0
-  MinDamage: 0
-  MaxDamage: 0
-  CriticalMultiplier: 0
-  CriticalChance: 0
-  weapomPrefab: {fileID: 0}
+  Cooldown: 10
+  Range: 10
+  MinDamage: 5
+  MaxDamage: 10
+  CriticalMultiplier: 2
+  CriticalChance: 0.3
+  weapomPrefab: {fileID: 2866569490883875428, guid: e2bfd0fa5ff97494b88c4553719d7350, type: 3}
   damagetype: 64
+  attackRate: 0
+  weaponststs: {fileID: 11400000, guid: 1b6e6d939f3bfbd4e92e6155bcd5be83, type: 2}
