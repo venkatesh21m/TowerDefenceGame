@@ -9,7 +9,6 @@ namespace Rudrac.TowerDefence.AI
 {
     public class AIMovement : MonoBehaviour
     {
-        public Direction direction;
         Stats.CharacterStats stats;
 
         public Animator anim;
@@ -49,7 +48,6 @@ namespace Rudrac.TowerDefence.AI
                 }
             }
 
-           
         }
 
         private void OnTriggerEnter(Collider other)
@@ -81,7 +79,6 @@ namespace Rudrac.TowerDefence.AI
                 attackable.OnAttack(stats.gameObject, attack);
             }
         }
-
     }
 
     public enum Direction

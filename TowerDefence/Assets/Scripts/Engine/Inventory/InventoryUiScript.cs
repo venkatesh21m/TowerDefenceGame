@@ -27,6 +27,10 @@ namespace Rudrac.TowerDefence.Inventory.UI
         public void selected(ItemPickUP_SO item)
         {
             Fillingsprite.color = Color.green;
+
+            if (inventoryitem == null) return;
+            if (inventoryitem.SkillDefinition == null) return;
+
             if (startTime >= inventoryitem.SkillDefinition.attackRate)
             {
                 canFire = true;
@@ -46,14 +50,26 @@ namespace Rudrac.TowerDefence.Inventory.UI
             if (!canFire) {
                 startTime += Time.deltaTime;
 
-                Fillingsprite.transform.localScale = new Vector3(startTime / inventoryitem.SkillDefinition.attackRate, 1, 1);
-
-                if (startTime >= inventoryitem.SkillDefinition.attackRate)
+                if (inventoryitem != null && inventoryitem.SkillDefinition!=null)
                 {
-                    canFire = true;
-                    FindObjectOfType<PointAim>().ResetShoot();
+                    Fillingsprite.transform.localScale = new Vector3(startTime / inventoryitem.SkillDefinition.attackRate, 1, 1);
+
+                    if (startTime >= inventoryitem.SkillDefinition.attackRate)
+                    {
+                        canFire = true;
+                        FindObjectOfType<PointAim>().ResetShoot();
+                    }
                 }
             }
+        }
+
+        internal void setDetails()
+        {
+            this.inventoryitem = null;
+            text.text = "--";
+            sprite.sprite = null;
+            // startTimer();
+            Fillingsprite.transform.localScale = new Vector3(0, 1, 1);
         }
 
         internal void startTimer()
