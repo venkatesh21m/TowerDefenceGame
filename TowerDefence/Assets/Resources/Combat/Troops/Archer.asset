@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TroopPrefab: {fileID: 6901766849558596342, guid: 74557ed45ea2d7f4fb6136a5161618df, type: 3}
   numberofCharacters: 5
+  ResetTime: 10
+  troopstats: {fileID: 11400000, guid: 4a8f37bd6dec2c941bf1576969dbade8, type: 2}
