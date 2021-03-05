@@ -37,11 +37,15 @@ namespace Rudrac.TowerDefence.Inventory
                 case SkillType.Troop:
                     //get troop prefab
                     //instantiate in the level
+                    Transform troopspawnpos = Managers.LevelManager.instance.playerTroopStartpos;
                     for (int i = 0; i < TroopDefinition.numberofCharacters; i++)
                     {
-                        Instantiate(TroopDefinition.TroopPrefab);
+                       GameObject troop =  Instantiate(TroopDefinition.TroopPrefab,troopspawnpos.position,Quaternion.identity);
+                        troop.GetComponent<Stats.CharacterStats>().enemy = false;
+                        troop.GetComponent<Stats.CharacterStats>().playerTroop = true;
                     }
                     stats.removeWeapon();
+                    Inventory.instance.StartTimer();
                     break;
                 default:
                     break;

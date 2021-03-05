@@ -20,6 +20,8 @@ namespace Rudrac.TowerDefence.Inventory.UI
             this.inventoryitem = inventoryItem;
             text.text = inventoryItem.itemName;
             sprite.sprite = inventoryItem.itemIcon;
+            Fillingsprite.transform.localScale = new Vector3(0, 1, 1);
+
             startTimer();
 
         }
@@ -50,15 +52,38 @@ namespace Rudrac.TowerDefence.Inventory.UI
             if (!canFire) {
                 startTime += Time.deltaTime;
 
-                if (inventoryitem != null && inventoryitem.SkillDefinition!=null)
+               
+               
+                if (inventoryitem != null )
                 {
-                    Fillingsprite.transform.localScale = new Vector3(startTime / inventoryitem.SkillDefinition.attackRate, 1, 1);
+                    if (inventoryitem.skilltype == SkillType.Weapon && inventoryitem.SkillDefinition == null) return;
+                    if (inventoryitem.skilltype == SkillType.Troop && inventoryitem.TroopDefinition == null) return;
 
-                    if (startTime >= inventoryitem.SkillDefinition.attackRate)
+                    switch (inventoryitem.skilltype)
                     {
-                        canFire = true;
-                        FindObjectOfType<PointAim>().ResetShoot();
+                        case SkillType.Weapon:
+                            Fillingsprite.transform.localScale = new Vector3(startTime / inventoryitem.SkillDefinition.attackRate, 1, 1);
+
+                            if (startTime >= inventoryitem.SkillDefinition.attackRate)
+                            {
+                                canFire = true;
+                                FindObjectOfType<PointAim>().ResetShoot();
+                            }
+                            break;
+                        case SkillType.Troop:
+                            if (inventoryitem.TroopDefinition.troopstats == null) return;
+                            Fillingsprite.transform.localScale = new Vector3(startTime / inventoryitem.TroopDefinition.ResetTime, 1, 1);
+
+                            if (startTime >= inventoryitem.TroopDefinition.ResetTime)
+                            {
+                                canFire = true;
+                                //FindObjectOfType<PointAim>().ResetShoot();
+                            }
+                            break;
+                        default:
+                            break;
                     }
+                   
                 }
             }
         }

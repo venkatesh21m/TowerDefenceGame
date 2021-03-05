@@ -17,14 +17,23 @@ namespace Rudrac.TowerDefence.Inventory
         public inventoryRow[] inventoryitmes;
         int currentRow;
         int currentID;
+
+        public SkillType GetSkillType()
+        {
+            return inventoryitmes[currentRow].inventoryRowitems[currentID].skilltype;
+        }
+
         // Start is called before the first frame update
         void Start()
         {
+            instance = this;
             currentRow = 0;
 
             SetData();
 
-            UseItem(1);
+            if (inventoryitmes[currentRow].inventoryRowitems[0] == null) return;
+            if (inventoryitmes[currentRow].inventoryRowitems[0].skilltype == SkillType.Weapon)
+                UseItem(1);
 
         }
 
@@ -77,7 +86,9 @@ namespace Rudrac.TowerDefence.Inventory
                 }
 
                 SetData();
-                UseItem(1);
+                if (inventoryitmes[currentRow].inventoryRowitems[0] == null) return;
+                if (inventoryitmes[currentRow].inventoryRowitems[0].skilltype == SkillType.Weapon)
+                    UseItem(1);
             }
             
             if(Input.mouseScrollDelta == Vector2.up)
@@ -89,14 +100,14 @@ namespace Rudrac.TowerDefence.Inventory
                 }
 
                 SetData();
-                UseItem(1);
+                if (inventoryitmes[currentRow].inventoryRowitems[0] == null) return;
+                if (inventoryitmes[currentRow].inventoryRowitems[0].skilltype == SkillType.Weapon)
+                    UseItem(1);
             }
         }
 
         public void UseItem(int id)
         {
-
-
             for (int i = 0; i < hotbarUIitems.Length; i++)
             {
                 if (i == id - 1)
@@ -104,12 +115,24 @@ namespace Rudrac.TowerDefence.Inventory
                     hotbarUIitems[i].selected(inventoryitmes[currentRow].inventoryRowitems[i]);
                     
                     if (inventoryitmes[currentRow].inventoryRowitems[i] == null) stats.removeWeapon();
-                    
-                    if(inventoryitmes[currentRow].inventoryRowitems[i]!= null)
-                        inventoryitmes[currentRow].inventoryRowitems[i].UseItem(stats);
+
+                    if (inventoryitmes[currentRow].inventoryRowitems[i] != null)
+                    {
+                        switch (inventoryitmes[currentRow].inventoryRowitems[i].skilltype)
+                        {
+                            case SkillType.Weapon:
+                                inventoryitmes[currentRow].inventoryRowitems[i].UseItem(stats);
+                                break;
+                            case SkillType.Troop:
+                                if(hotbarUIitems[i].canFire)
+                                    inventoryitmes[currentRow].inventoryRowitems[i].UseItem(stats);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
                     
                     currentID = i;
-
                 }
                 else
                     hotbarUIitems[i].notselected();

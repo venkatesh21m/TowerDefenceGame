@@ -21,7 +21,16 @@ namespace Rudrac.TowerDefence.AI
         private void Start()
         {
             stats = FindObjectOfType<Stats.CharacterStats>();
-
+            if (stats.enemy)
+            {
+                Target = Managers.LevelManager.instance.playerflag;
+                gameObject.AddComponent<EnemySideTag>();
+            }
+            if (stats.playerTroop)
+            {
+                Target = Managers.LevelManager.instance.Enemyflag;
+                gameObject.AddComponent<PlayerSideTag>();
+            }
             agent.speed = stats.GetSpeed();
             agent.SetDestination(Target.position);
         }
@@ -33,7 +42,14 @@ namespace Rudrac.TowerDefence.AI
 
             if (Target == null)
             {
-                Target = FindObjectOfType<Tower>().transform;
+                if (stats.enemy)
+                {
+                    Target = Managers.LevelManager.instance.playerflag;
+                }
+                if (stats.playerTroop)
+                {
+                    Target = Managers.LevelManager.instance.Enemyflag;
+                }
                 agent.SetDestination(Target.position);
             }
 
@@ -47,15 +63,38 @@ namespace Rudrac.TowerDefence.AI
                     Invoke("ResetAttack", stats.GetAttackRate());
                 }
             }
-
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.GetComponent<PlayerSideTag>())
+
+            //store all collided enemies 
+            // set destination to one
+            //after killing it change destinaton
+            //after killing all the enemies
+            //assign the flag pos
+
+
+            if (Target.GetComponent<CharacterStats>()) return;
+            if (agent == null) return;
+            if (stats.enemy)
             {
-                Target = other.transform;
-                agent.SetDestination(Target.position);
+                if (other.GetComponentInParent<PlayerSideTag>())
+                {
+                    Target = other.GetComponentInParent<CharacterStats>().transform;
+                    agent.SetDestination(Target.position);
+                    Debug.Log("detected playertroop");
+                }
+            }
+            else if(stats.playerTroop)
+            {
+                if (other.GetComponentInParent<EnemySideTag>())
+                {
+                    Target = other.GetComponentInParent<CharacterStats>().transform;
+                    Debug.Log("detected enemy");
+
+                    agent.SetDestination(Target.position);
+                }
             }
         }
 
@@ -66,6 +105,8 @@ namespace Rudrac.TowerDefence.AI
 
         public void Attack()
         {
+            if (Target == null) return;
+
             var attack = stats.GetWeapon().CreateAttack(stats, Target.GetComponent<CharacterStats>());
 
             Debug.Log("enemy collided");

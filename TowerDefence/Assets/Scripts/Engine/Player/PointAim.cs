@@ -95,18 +95,20 @@ namespace Rudrac.TowerDefence
         /// </summary>
         private void shoot()
         {
-            
-           canshoot = false;
-          // pc.canwalk = false;
+            if(FindObjectOfType<Inventory.Inventory>().GetSkillType() == Inventory.SkillType.Weapon)
+            {
+                canshoot = false;
+                // pc.canwalk = false;
+                anim.SetTrigger("FireArrow");
+                
+                // Invoke("ResetShoot", 1.25f);
+                FindObjectOfType<Inventory.Inventory>().StartTimer();
+                GameObject arrow = Instantiate(Arrow, ArrowSpawnPos.position, ArrowSpawnPos.rotation);
+                arrow.GetComponent<Rigidbody>().velocity = ArrowSpawnPos.right * launchspeed;
+                arrow.GetComponent<Combat.projectile>().stats = GetComponent<Stats.CharacterStats>();
+                Asource.PlayOneShot(ArrowFiringClip);
+            }
 
-           anim.SetTrigger("FireArrow");
-            // Invoke("ResetShoot", 1.25f);
-           FindObjectOfType<Inventory.Inventory>().StartTimer();
-           GameObject arrow = Instantiate(Arrow, ArrowSpawnPos.position, ArrowSpawnPos.rotation);
-           arrow.GetComponent<Rigidbody>().velocity = ArrowSpawnPos.right * launchspeed;
-           arrow.GetComponent<Combat.projectile>().stats = GetComponent<Stats.CharacterStats>();
-           Asource.PlayOneShot(ArrowFiringClip);
-           
         }
 
 

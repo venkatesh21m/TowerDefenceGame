@@ -26,7 +26,6 @@ namespace Rudrac.TowerDefence.Combat
                 GameObject fireeffect = Instantiate(FireEffect, other.GetContact(0).point, FireEffect.transform.rotation);
                 fireeffect.transform.parent = transform;
                 Destroy(fireeffect, FireTime);
-
             }
 
             if (other.collider.CompareTag("Enemy") && !TouchingGround)

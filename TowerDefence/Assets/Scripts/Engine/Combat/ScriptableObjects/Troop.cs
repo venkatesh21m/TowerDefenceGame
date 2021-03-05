@@ -9,5 +9,8 @@ namespace Rudrac.TowerDefence.Combat
     {
         public GameObject TroopPrefab;
         public int numberofCharacters;
+        public float ResetTime = 15;
+        [Space]
+        public characterStats_SO troopstats;
     }
 }

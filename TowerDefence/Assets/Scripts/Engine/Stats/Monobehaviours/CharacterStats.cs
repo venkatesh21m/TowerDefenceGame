@@ -10,12 +10,13 @@ namespace Rudrac.TowerDefence.Stats
     {
         [SerializeField] characterStats_SO CharacterStatsDefinition;
         public bool enemy;
+        public bool playerTroop;
         public PointAim shootScript;
         
         // Start is called before the first frame update
         void Start()
         {
-            if (enemy)
+            if (enemy || playerTroop)
             {
                 CharacterStatsDefinition = Instantiate(CharacterStatsDefinition);
             }
