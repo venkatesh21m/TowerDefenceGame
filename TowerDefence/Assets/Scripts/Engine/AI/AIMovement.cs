@@ -10,7 +10,7 @@ namespace Rudrac.TowerDefence.AI
     public class AIMovement : MonoBehaviour
     {
         Stats.CharacterStats stats;
-
+        
         public Animator anim;
         public NavMeshAgent agent;
 
@@ -18,8 +18,12 @@ namespace Rudrac.TowerDefence.AI
         bool canAttack = true;
         public Transform Target;
 
+        List<GameObject> enemies;
+
         private void Start()
         {
+            enemies = new List<GameObject>();
+
             stats = FindObjectOfType<Stats.CharacterStats>();
             if (stats.enemy)
             {
@@ -33,6 +37,7 @@ namespace Rudrac.TowerDefence.AI
             }
             agent.speed = stats.GetSpeed();
             agent.SetDestination(Target.position);
+
         }
 
         void Update()
@@ -42,13 +47,25 @@ namespace Rudrac.TowerDefence.AI
 
             if (Target == null)
             {
-                if (stats.enemy)
+                foreach (GameObject item in enemies)
                 {
-                    Target = Managers.LevelManager.instance.playerflag;
+                    if (item != null)
+                    {
+                        Target = item.transform;
+                        break;
+                    }
                 }
-                if (stats.playerTroop)
+
+                if (Target == null)
                 {
-                    Target = Managers.LevelManager.instance.Enemyflag;
+                    if (stats.enemy)
+                    {
+                        Target = Managers.LevelManager.instance.playerflag;
+                    }
+                    if (stats.playerTroop)
+                    {
+                        Target = Managers.LevelManager.instance.Enemyflag;
+                    }
                 }
                 agent.SetDestination(Target.position);
             }
@@ -75,25 +92,26 @@ namespace Rudrac.TowerDefence.AI
             //assign the flag pos
 
 
-            if (Target.GetComponent<CharacterStats>()) return;
-            if (agent == null) return;
+            //if (!Target.GetComponent<CharacterStats>()) return;
+            //if (agent == null) return;
             if (stats.enemy)
             {
-                if (other.GetComponentInParent<PlayerSideTag>())
+                if (other.GetComponentInParent<CharacterStats>().GetComponent<PlayerSideTag>())
                 {
                     Target = other.GetComponentInParent<CharacterStats>().transform;
+                    enemies.Add(Target.gameObject);
                     agent.SetDestination(Target.position);
                     Debug.Log("detected playertroop");
                 }
             }
             else if(stats.playerTroop)
             {
-                if (other.GetComponentInParent<EnemySideTag>())
+                if (other.GetComponentInParent<Stats.CharacterStats>().GetComponent<EnemySideTag>())
                 {
                     Target = other.GetComponentInParent<CharacterStats>().transform;
-                    Debug.Log("detected enemy");
-
+                    enemies.Add(Target.gameObject);
                     agent.SetDestination(Target.position);
+                    Debug.Log("detected enemy");
                 }
             }
         }

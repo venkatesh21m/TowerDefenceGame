@@ -15,7 +15,7 @@ namespace Rudrac.TowerDefence.Combat
         {
             var _text = ((int)attack.Damage).ToString();
             var scrollingText = Instantiate(text, transform.position, Quaternion.identity);
-            scrollingText.transform.parent = transform;
+           // scrollingText.transform.parent = transform;
             scrollingText.SetText(_text);
             scrollingText.SetColor(TextColor);
         }

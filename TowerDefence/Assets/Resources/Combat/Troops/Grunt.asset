@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Grunt
   m_EditorClassIdentifier: 
   TroopPrefab: {fileID: 1968321415656363417, guid: 34ee60cabc49f094a9e8085b512cb189, type: 3}
-  numberofCharacters: 2
-  ResetTime: 15
+  numberofCharacters: 6
+  ResetTime: 5
   troopstats: {fileID: 11400000, guid: cc56ea7841c9376489ef0b74dbbed7e2, type: 2}
