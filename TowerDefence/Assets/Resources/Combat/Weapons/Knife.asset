@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Knife
   m_EditorClassIdentifier: 
   Cooldown: 0
-  Range: 1
+  Range: 5
   MinDamage: 2
   MaxDamage: 7
   CriticalMultiplier: 2

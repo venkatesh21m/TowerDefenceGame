@@ -24,7 +24,7 @@ namespace Rudrac.TowerDefence.AI
         {
             enemies = new List<GameObject>();
 
-            stats = FindObjectOfType<Stats.CharacterStats>();
+            stats = GetComponent<Stats.CharacterStats>();
             if (stats.enemy)
             {
                 Target = Managers.LevelManager.instance.playerflag;
@@ -42,7 +42,7 @@ namespace Rudrac.TowerDefence.AI
 
         void Update()
         {
-            if(agent != null)
+            if(agent != null && anim)
                 anim.SetFloat("MovementSpeed", agent.velocity.magnitude);
 
             if (Target == null)
@@ -67,7 +67,8 @@ namespace Rudrac.TowerDefence.AI
                         Target = Managers.LevelManager.instance.Enemyflag;
                     }
                 }
-                agent.SetDestination(Target.position);
+                if (agent != null )
+                    agent.SetDestination(Target.position);
             }
 
             if (Vector3.Distance(Target.position, transform.position) < stats.GetWeapon().Range)
@@ -76,7 +77,8 @@ namespace Rudrac.TowerDefence.AI
                 {
                     canAttack = false;
                     Attack();
-                    anim.SetTrigger("Attack");
+                   if(anim)
+                        anim.SetTrigger("Attack");
                     Invoke("ResetAttack", stats.GetAttackRate());
                 }
             }
@@ -91,27 +93,30 @@ namespace Rudrac.TowerDefence.AI
             //after killing all the enemies
             //assign the flag pos
 
-
-            //if (!Target.GetComponent<CharacterStats>()) return;
-            //if (agent == null) return;
             if (stats.enemy)
             {
-                if (other.GetComponentInParent<CharacterStats>().GetComponent<PlayerSideTag>())
+                if (other.CompareTag("Player"))
                 {
-                    Target = other.GetComponentInParent<CharacterStats>().transform;
-                    enemies.Add(Target.gameObject);
-                    agent.SetDestination(Target.position);
-                    Debug.Log("detected playertroop");
+                    if (other.GetComponentInParent<CharacterStats>().GetComponent<PlayerSideTag>())
+                    {
+                        Target = other.GetComponentInParent<CharacterStats>().transform;
+                        enemies.Add(Target.gameObject);
+                        if (agent != null) agent.SetDestination(Target.position);
+                        Debug.Log("detected playertroop");
+                    }
                 }
             }
             else if(stats.playerTroop)
             {
-                if (other.GetComponentInParent<Stats.CharacterStats>().GetComponent<EnemySideTag>())
+                if (other.CompareTag("Enemy"))
                 {
-                    Target = other.GetComponentInParent<CharacterStats>().transform;
-                    enemies.Add(Target.gameObject);
-                    agent.SetDestination(Target.position);
-                    Debug.Log("detected enemy");
+                    if (other.GetComponentInParent<Stats.CharacterStats>().GetComponent<EnemySideTag>())
+                    {
+                        Target = other.GetComponentInParent<CharacterStats>().transform;
+                        enemies.Add(Target.gameObject);
+                        if (agent != null) agent.SetDestination(Target.position);
+                        Debug.Log("detected enemy");
+                    }
                 }
             }
         }
@@ -123,7 +128,9 @@ namespace Rudrac.TowerDefence.AI
 
         public void Attack()
         {
-            if (Target == null) return;
+            if (Target == null && stats != null) return;
+
+            transform.LookAt(new Vector3(Target.position.x,transform.position.y,Target.position.z));
 
             var attack = stats.GetWeapon().CreateAttack(stats, Target.GetComponent<CharacterStats>());
 
@@ -135,7 +142,8 @@ namespace Rudrac.TowerDefence.AI
             //call interfase function on each attackables
             foreach (IAttackable attackable in attackables)
             {
-                attackable.OnAttack(stats.gameObject, attack);
+                if(stats != null)
+                    attackable.OnAttack(stats.gameObject, attack);
             }
         }
     }

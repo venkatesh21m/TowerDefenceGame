@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fd9871e8495de6498227ed6b20d4a54, type: 3}
   m_Name: BigGrunt
   m_EditorClassIdentifier: 
-  _Speed: 0
-  _MaxHealth: 10
-  _CurrentHealth: 10
+  _Speed: 0.7
+  _MaxHealth: 50
+  _CurrentHealth: 50
   _DamageType: 2
   _Weekness: 8
   _Resistance: 4
-  _AttackRate: 2.5
+  _AttackRate: 2
   _HitPoints: 5
+  _Weapon: {fileID: 11400000, guid: 534b6f3334c45d244aa0f68c94eaebcc, type: 2}
   _Gold: 0
   _Cost: 20
   _Experience: 0
@@ -27,7 +28,7 @@ MonoBehaviour:
     RankName: 
     _Ranknumber: 0
     _RequiredExperience: 0
-    _MaxHealth: 0
     _AttackRate: 0
     _Hitpoints: 0
+    _MaxHealth: 0
   _Ranks: []

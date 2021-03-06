@@ -63,7 +63,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDef: {fileID: 11400000, guid: 6b046c9d1795e49468050263052cb44b, type: 2}
   rigid: {fileID: 2866569490883875421}
+  TouchingGround: 0
   stats: {fileID: 0}
+  _object: {fileID: 0}
 --- !u!1 &3248442483510091324
 GameObject:
   m_ObjectHideFlags: 0

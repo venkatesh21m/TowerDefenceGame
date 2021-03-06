@@ -36,17 +36,60 @@ namespace Rudrac.TowerDefence.Combat
                 Destroy(gameObject, 3);
             }
 
-            if (other.collider.CompareTag("Enemy") && !TouchingGround)
+            if (stats.enemy || stats.playerTroop)
             {
-                _object = other.gameObject;
-                TouchingGround = true;
-                rigid.isKinematic = true;
-                rigid.Sleep();
+                if (stats.enemy)
+                {
+                    Debug.Log(other.transform.GetComponentInParent<Stats.CharacterStats>());
+                    Debug.Log(other.transform.GetComponentInParent<Stats.CharacterStats>().GetComponent<PlayerSideTag>());
+                    if (other.transform.GetComponentInParent<Stats.CharacterStats>().GetComponent<PlayerSideTag>())
+                    {
+                        _object = other.transform.GetComponentInParent<Stats.CharacterStats>().gameObject;
 
-                transform.parent = other.transform;
-                Attack();
-               
-                Destroy(gameObject, 3);
+                        TouchingGround = true;
+                        rigid.isKinematic = true;
+                        rigid.Sleep();
+
+                        transform.parent = other.transform;
+                        Attack();
+                    
+                    }
+                    Destroy(gameObject, 3);
+
+                }
+                else
+                {
+                    Debug.Log(other.transform.GetComponentInParent<Stats.CharacterStats>());
+                    Debug.Log(other.transform.GetComponentInParent<Stats.CharacterStats>().GetComponent<EnemySideTag>());
+                    if (other.transform.GetComponentInParent<Stats.CharacterStats>().GetComponent<EnemySideTag>())
+                    {
+                        _object = other.transform.GetComponentInParent<Stats.CharacterStats>().gameObject;
+
+                        TouchingGround = true;
+                        rigid.isKinematic = true;
+                        rigid.Sleep();
+
+                        transform.parent = other.transform;
+                        Attack();
+                    }
+
+                    Destroy(gameObject, 3);
+                }
+            }
+            else
+            {
+                if (other.collider.CompareTag("Enemy") && !TouchingGround)
+                {
+                    _object = other.gameObject;
+                    TouchingGround = true;
+                    rigid.isKinematic = true;
+                    rigid.Sleep();
+
+                    transform.parent = other.transform;
+                    Attack();
+
+                    Destroy(gameObject, 3);
+                }
             }
         }
 
