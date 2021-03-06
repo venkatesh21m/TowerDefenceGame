@@ -20,6 +20,13 @@ namespace Rudrac.TowerDefence.AI
         public bool carryingflag = false;
         List<GameObject> enemies;
 
+        public void LoseFlag()
+        {
+            carryingflag = false;
+            if (agent != null)
+                agent.speed *= 1.5f;
+        }
+
         private void Start()
         {
             enemies = new List<GameObject>();
@@ -78,37 +85,75 @@ namespace Rudrac.TowerDefence.AI
             {
                 if (Vector3.Distance(Target.position, transform.position) < 2)
                 {
+                    if (Target.parent)
+                    {
+                        if (Target.parent.GetComponent<Stats.CharacterStats>().GetSpeed() > stats.GetSpeed())
+                        {
+                            Target.parent.GetComponent<AI.AIMovement>().LoseFlag();
+                            
+                            Target.parent = transform;
+                            Target = Managers.LevelManager.instance.Enemyflag.transform;
+                            carryingflag = true;
+                            agent.speed /= 1.5f;
+
+                            if (agent != null)
+                                agent.SetDestination(Target.position);
+                           
+                            return;
+                        }
+                    }
+
                     Target.parent = transform;
                     Target = Managers.LevelManager.instance.playerflag.transform;
                     carryingflag = true;
                     agent.speed /= 1.5f;
-                    
+
                     if (agent != null)
                         agent.SetDestination(Target.position);
                 }
             }
-            else if (stats.playerTroop && Target.CompareTag("PlayerFalg"))
+            else if (stats.enemy && Target.CompareTag("PlayerFalg"))
             {
                 if (Vector3.Distance(Target.position, transform.position) < 2)
                 {
+                    if (Target.parent)
+                    {
+                        if (Target.parent.GetComponent<Stats.CharacterStats>().GetSpeed() > stats.GetSpeed())
+                        {
+                            Target.parent.GetComponent<AI.AIMovement>().LoseFlag();
+                            Target.parent = transform;
+                            Target = Managers.LevelManager.instance.Enemyflag.transform;
+                            carryingflag = true;
+                            agent.speed /= 1.5f;
+
+                            if (agent != null)
+                                agent.SetDestination(Target.position);
+                           
+                            return;
+                        }
+                    }
+
                     Target.parent = transform;
                     Target = Managers.LevelManager.instance.Enemyflag.transform;
                     carryingflag = true;
                     agent.speed /= 1.5f;
-                    
+
                     if (agent != null)
                         agent.SetDestination(Target.position);
                 }
             }
-            if (Vector3.Distance(Target.position, transform.position) < stats.GetWeapon().Range)
+            else
             {
-                if (canAttack)
+                if (Vector3.Distance(Target.position, transform.position) < stats.GetWeapon().Range)
                 {
-                    canAttack = false;
-                    Attack();
-                   if(anim)
-                        anim.SetTrigger("Attack");
-                    Invoke("ResetAttack", stats.GetAttackRate());
+                    if (canAttack)
+                    {
+                        canAttack = false;
+                        Attack();
+                        if (anim)
+                            anim.SetTrigger("Attack");
+                        Invoke("ResetAttack", stats.GetAttackRate());
+                    }
                 }
             }
         }

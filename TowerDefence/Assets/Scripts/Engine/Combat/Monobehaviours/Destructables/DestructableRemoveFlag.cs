@@ -27,6 +27,5 @@ namespace Rudrac.TowerDefence.Combat
                 }
             }
         }
-
     }
 }
