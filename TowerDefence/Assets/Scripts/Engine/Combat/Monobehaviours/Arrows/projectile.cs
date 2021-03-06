@@ -17,6 +17,8 @@ namespace Rudrac.TowerDefence.Combat
         public CharacterStats stats;
         [HideInInspector]
         public GameObject _object;
+
+
         // Update is called once per frame
         public virtual void Update()
         {
@@ -38,10 +40,8 @@ namespace Rudrac.TowerDefence.Combat
 
             if (stats.enemy || stats.playerTroop)
             {
-                if (stats.enemy)
+                if (stats.enemy && other.transform.CompareTag("Player"))
                 {
-                    Debug.Log(other.transform.GetComponentInParent<Stats.CharacterStats>());
-                    Debug.Log(other.transform.GetComponentInParent<Stats.CharacterStats>().GetComponent<PlayerSideTag>());
                     if (other.transform.GetComponentInParent<Stats.CharacterStats>().GetComponent<PlayerSideTag>())
                     {
                         _object = other.transform.GetComponentInParent<Stats.CharacterStats>().gameObject;
@@ -52,15 +52,12 @@ namespace Rudrac.TowerDefence.Combat
 
                         transform.parent = other.transform;
                         Attack();
-                    
                     }
                     Destroy(gameObject, 3);
 
                 }
-                else
+                else if(stats.playerTroop && other.transform.CompareTag("Enemy"))
                 {
-                    Debug.Log(other.transform.GetComponentInParent<Stats.CharacterStats>());
-                    Debug.Log(other.transform.GetComponentInParent<Stats.CharacterStats>().GetComponent<EnemySideTag>());
                     if (other.transform.GetComponentInParent<Stats.CharacterStats>().GetComponent<EnemySideTag>())
                     {
                         _object = other.transform.GetComponentInParent<Stats.CharacterStats>().gameObject;
@@ -98,17 +95,16 @@ namespace Rudrac.TowerDefence.Combat
             //Create attack
             var attack = attackDef.CreateAttack(stats, _object.GetComponent<CharacterStats>());
 
-            Debug.Log("enemy collided");
-
             //Get all attackables on the enemy
             var attackables = _object.GetComponentsInParent<IAttackable>();
 
             //call interfase function on each attackables
             foreach (IAttackable attackable in attackables)
             {
-                attackable.OnAttack(stats.gameObject, attack);
+                if(stats!= null)
+                    attackable.OnAttack(stats.gameObject, attack);
             }
-        
+
         }
     }
 }

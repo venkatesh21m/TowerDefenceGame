@@ -7,6 +7,8 @@ TagManager:
   - Tower
   - Enemy
   - waypoint
+  - EnemyFlag
+  - PlayerFalg
   layers:
   - Default
   - TransparentFX

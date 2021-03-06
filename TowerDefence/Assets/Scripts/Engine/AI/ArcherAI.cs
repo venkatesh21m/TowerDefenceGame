@@ -10,7 +10,10 @@ namespace Rudrac.TowerDefence.AI
         GameObject[] waypoints;
         NavMeshAgent agent;
         Stats.CharacterStats stats;
+        public bool carryingflag;
         AIArrowFiring fire;
+
+
         // Start is called before the first frame update
         void Start()
         {
@@ -32,6 +35,8 @@ namespace Rudrac.TowerDefence.AI
             InvokeRepeating("ChangePosition", Random.Range(0, 10), 20);
             InvokeRepeating("FindTargetAndFIre", Random.Range(0,10), stats.GetAttackRate());
         }
+
+
 
         // Update is called once per frame
         void Update()

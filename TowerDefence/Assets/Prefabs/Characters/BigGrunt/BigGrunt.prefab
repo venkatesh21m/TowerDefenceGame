@@ -42,7 +42,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.00000017881389, y: 0.00000018626454, z: 0.11169055}
+  m_ConnectedAnchor: {x: 0.00000017881389, y: 0.00000018626454, z: 0.11169246}
   serializedVersion: 2
   m_SwingAxis: {x: -1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -118,7 +118,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: -1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.286961, y: -0.011518994, z: 0.2222972}
+  m_ConnectedAnchor: {x: -0.2869611, y: -0.011518994, z: 0.2222972}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -492,7 +492,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.29778656, y: 0.000000006519257, z: -0.0000010384246}
+  m_ConnectedAnchor: {x: -0.297788, y: 0.0000000018626449, z: 0.00000014156102}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_TwistLimitSpring:
@@ -643,7 +643,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.29778695, y: 0.000000017695127, z: 0.00000079814345}
+  m_ConnectedAnchor: {x: -0.29778844, y: 0.000000019557772, z: -0.00000040326267}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_TwistLimitSpring:
@@ -719,7 +719,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.00000017881399, y: -0.0000001192093, z: -0.11169055}
+  m_ConnectedAnchor: {x: -0.00000017881399, y: -0.0000001192093, z: -0.11169246}
   serializedVersion: 2
   m_SwingAxis: {x: -1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -845,6 +845,7 @@ GameObject:
   - component: {fileID: 4816575012818364390}
   - component: {fileID: 6225437368380904199}
   - component: {fileID: 2723624399458996895}
+  - component: {fileID: 7242376700320308042}
   - component: {fileID: 8160212029717558780}
   - component: {fileID: 1969135029670585979}
   - component: {fileID: 2448022448699519904}
@@ -974,6 +975,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bcfa7aa12a9026e4686e39f3fb5908a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7242376700320308042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1968321415656363417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e130ee1a51d32b44b94fff57fb86540b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &8160212029717558780

@@ -17,7 +17,7 @@ namespace Rudrac.TowerDefence.AI
         bool attacking = false;
         bool canAttack = true;
         public Transform Target;
-
+        public bool carryingflag = false;
         List<GameObject> enemies;
 
         private void Start()
@@ -69,8 +69,37 @@ namespace Rudrac.TowerDefence.AI
                 }
                 if (agent != null )
                     agent.SetDestination(Target.position);
+
+
             }
 
+            //to carry flag
+            if (stats.playerTroop && Target.CompareTag("EnemyFlag"))
+            {
+                if (Vector3.Distance(Target.position, transform.position) < 2)
+                {
+                    Target.parent = transform;
+                    Target = Managers.LevelManager.instance.playerflag.transform;
+                    carryingflag = true;
+                    agent.speed /= 1.5f;
+                    
+                    if (agent != null)
+                        agent.SetDestination(Target.position);
+                }
+            }
+            else if (stats.playerTroop && Target.CompareTag("PlayerFalg"))
+            {
+                if (Vector3.Distance(Target.position, transform.position) < 2)
+                {
+                    Target.parent = transform;
+                    Target = Managers.LevelManager.instance.Enemyflag.transform;
+                    carryingflag = true;
+                    agent.speed /= 1.5f;
+                    
+                    if (agent != null)
+                        agent.SetDestination(Target.position);
+                }
+            }
             if (Vector3.Distance(Target.position, transform.position) < stats.GetWeapon().Range)
             {
                 if (canAttack)
