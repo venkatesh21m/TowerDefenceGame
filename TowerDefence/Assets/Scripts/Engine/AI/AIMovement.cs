@@ -18,14 +18,13 @@ namespace Rudrac.TowerDefence.AI
         bool canAttack = true;
         public Transform Target;
         public bool carryingflag = false;
-        bool flaginpos = true;
         List<GameObject> enemies;
-        Managers.LevelManager levelmanager;
+
         public void LoseFlag()
         {
             carryingflag = false;
             if (agent != null)
-                agent.speed = stats.GetSpeed();
+                agent.speed *= 1.5f;
         }
 
         private void Start()
@@ -43,55 +42,9 @@ namespace Rudrac.TowerDefence.AI
                 Target = Managers.LevelManager.instance.Enemyflag;
                 gameObject.AddComponent<PlayerSideTag>();
             }
-
-            levelmanager = Managers.LevelManager.instance;
-
             agent.speed = stats.GetSpeed();
             agent.SetDestination(Target.position);
-            InvokeRepeating("SetAgentDestination", Random.Range(0, 10), Random.Range(0, 15));
 
-
-        }
-
-        void SetAgentDestination()
-        {
-            if (stats.enemy)
-            {
-                if (!levelmanager.enemyflagnotinplace)
-                {
-                    flaginpos = false;
-                    Target = levelmanager.Enemyflag;
-                    if (agent != null)
-                        agent.SetDestination(Target.position);
-                }
-                else
-                {
-                    flaginpos = true;
-                    Target = levelmanager.playerflag;
-                    if(agent!=null)
-                        agent.SetDestination(Target.position);
-                }
-
-            } 
-            
-            if (stats.playerTroop)
-            {
-                if (!levelmanager.playerflagnotinplace)
-                {
-                    flaginpos = false;
-                    Target = levelmanager.playerflag;
-                    if (agent != null)
-                        agent.SetDestination(Target.position);
-                }
-                else
-                {
-                    flaginpos = true;
-                    Target = levelmanager.Enemyflag;
-                    if (agent != null)
-                        agent.SetDestination(Target.position);
-                }
-
-            }
         }
 
         void Update()
@@ -124,6 +77,7 @@ namespace Rudrac.TowerDefence.AI
                 if (agent != null )
                     agent.SetDestination(Target.position);
 
+
             }
 
             //to carry flag
@@ -138,52 +92,24 @@ namespace Rudrac.TowerDefence.AI
                             Target.parent.GetComponent<AI.AIMovement>().LoseFlag();
                             
                             Target.parent = transform;
-                            //if (!flaginpos)
-                            //{
-                            //    Target = Managers.LevelManager.instance.PlayerflagStartPos;
-                            //}
-                            //else
-                            //{
-                            //    Target = Managers.LevelManager.instance.PlayerflagStartPos;
-                            //}
-                            Target = Managers.LevelManager.instance.PlayerflagStartPos;
-
+                            Target = Managers.LevelManager.instance.Enemyflag.transform;
                             carryingflag = true;
+                            agent.speed /= 1.5f;
 
                             if (agent != null)
-                            {
-                                agent.speed = stats.GetSpeed() / 1.25f;
                                 agent.SetDestination(Target.position);
-                            }
                            
                             return;
                         }
                     }
-                    else
-                    {
-                        Target.parent = transform;
-                        //if (!flaginpos)
-                        //{
-                        //    Target = Managers.LevelManager.instance.PlayerflagStartPos;
-                        //}
-                        //else
-                        //{
-                            Target = Managers.LevelManager.instance.PlayerflagStartPos;
-                        //}
 
-                        //Target = Managers.LevelManager.instance.playerflag.transform;
+                    Target.parent = transform;
+                    Target = Managers.LevelManager.instance.playerflag.transform;
+                    carryingflag = true;
+                    agent.speed /= 1.5f;
 
-                        carryingflag = true;
-
-                        agent.speed = stats.GetSpeed() / 1.25f;
-
-                        if (agent != null)
-                        {
-                            agent.SetDestination(Target.position);
-                        }
-                    }
-                    
-                   
+                    if (agent != null)
+                        agent.SetDestination(Target.position);
                 }
             }
             else if (stats.enemy && Target.CompareTag("PlayerFalg"))
@@ -196,55 +122,24 @@ namespace Rudrac.TowerDefence.AI
                         {
                             Target.parent.GetComponent<AI.AIMovement>().LoseFlag();
                             Target.parent = transform;
-                            //if (!flaginpos)
-                            //{
-                            //    Target = Managers.LevelManager.instance.EnemyflagStartPos;
-                            //}
-                            //else
-                            //{
-                                Target = Managers.LevelManager.instance.EnemyflagStartPos;
-                            //}
+                            Target = Managers.LevelManager.instance.Enemyflag.transform;
                             carryingflag = true;
-
-                            agent.speed = stats.GetSpeed() / 1.25f;
+                            agent.speed /= 1.5f;
 
                             if (agent != null)
-                            {
                                 agent.SetDestination(Target.position);
-                            }
                            
                             return;
                         }
-                        else
-                        {
-
-                            Target = FindObjectOfType<Tower>().transform;
-
-                            if (agent != null)
-                            {
-                                agent.SetDestination(Target.position);
-                            }
-                        }
                     }
-                    else
-                    {
-                        Target.parent = transform;
-                        if (!flaginpos)
-                        {
-                            Target = Managers.LevelManager.instance.EnemyflagStartPos;
-                        }
-                        else
-                        {
-                            Target = Managers.LevelManager.instance.EnemyflagStartPos;
-                        }
-                        carryingflag = true;
 
-                        if (agent != null)
-                        {
-                            agent.speed = stats.GetSpeed() / 1.25f;
-                            agent.SetDestination(Target.position);
-                        }
-                    }
+                    Target.parent = transform;
+                    Target = Managers.LevelManager.instance.Enemyflag.transform;
+                    carryingflag = true;
+                    agent.speed /= 1.5f;
+
+                    if (agent != null)
+                        agent.SetDestination(Target.position);
                 }
             }
             else
