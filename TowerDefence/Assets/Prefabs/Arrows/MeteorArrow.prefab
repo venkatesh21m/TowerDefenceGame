@@ -4527,7 +4527,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 2
+  m_CollisionDetection: 1
 --- !u!114 &6017913919761685760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4546,6 +4546,7 @@ MonoBehaviour:
   stats: {fileID: 0}
   _object: {fileID: 0}
   MeteorEffect: {fileID: 5683765709040737633, guid: 5a8d4ddce58383f40850622f3406111d, type: 3}
+  falltime: 0.2
 --- !u!1 &3248442483510091324
 GameObject:
   m_ObjectHideFlags: 0

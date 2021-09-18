@@ -15,12 +15,6 @@ namespace Rudrac.TowerDefence.Managers
         {
             instance = this;
         }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
     }
 
 

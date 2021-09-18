@@ -34,6 +34,7 @@ namespace Rudrac.TowerDefence.Combat
             if (other.gameObject.name == "Ground" &&!TouchingGround)
             {
                 TouchingGround = true;
+                rigid.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
                 rigid.isKinematic = true;
                 Destroy(gameObject, 3);
             }
@@ -47,6 +48,7 @@ namespace Rudrac.TowerDefence.Combat
                         _object = other.transform.GetComponentInParent<Stats.CharacterStats>().gameObject;
 
                         TouchingGround = true;
+                        rigid.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
                         rigid.isKinematic = true;
                         rigid.Sleep();
 
@@ -63,6 +65,7 @@ namespace Rudrac.TowerDefence.Combat
                         _object = other.transform.GetComponentInParent<Stats.CharacterStats>().gameObject;
 
                         TouchingGround = true;
+                        rigid.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
                         rigid.isKinematic = true;
                         rigid.Sleep();
 
@@ -79,6 +82,7 @@ namespace Rudrac.TowerDefence.Combat
                 {
                     _object = other.gameObject;
                     TouchingGround = true;
+                    rigid.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
                     rigid.isKinematic = true;
                     rigid.Sleep();
 

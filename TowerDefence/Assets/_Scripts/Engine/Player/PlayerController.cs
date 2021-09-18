@@ -21,7 +21,7 @@ namespace Rudrac.TowerDefence
 
         public Transform ArrowFirePosition;
         public GameObject Arrow;
-        [HideInInspector] public bool canwalk = true;
+        public bool canwalk = true;
 
         Ray InputRay;
         RaycastHit hitpoint;
@@ -46,9 +46,11 @@ namespace Rudrac.TowerDefence
                 Vector3 Movement = new Vector3(horizontalInput * Speed * Time.deltaTime, 0, 0);
 
 
+                Debug.Log(canwalk);
 
                 if (canwalk)
                 {
+                    Debug.Log(horizontalInput);
                     anim.SetFloat("MovementSpeed", horizontalInput);
 
                     //applying vector to transform
@@ -75,6 +77,7 @@ namespace Rudrac.TowerDefence
                     //TODO: Climb down the Tower
                     transform.position = tower.BottomPos.position;
                     OnTower = false;
+                    canwalk = true;
                 }
             }
             #endregion
