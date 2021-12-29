@@ -78,7 +78,6 @@ namespace Rudrac.TowerDefence.Inventory.UI
                             if (startTime >= inventoryitem.TroopDefinition.ResetTime)
                             {
                                 canFire = true;
-                                //FindObjectOfType<PointAim>().ResetShoot();
                             }
                             break;
                         default:

@@ -98,6 +98,8 @@ namespace Rudrac.TowerDefence.AI
         {
             if(agent != null && anim)
                 anim.SetFloat("MovementSpeed", agent.velocity.magnitude);
+            Vector3 pos = transform.position;
+            if (pos.x != -0.8f) transform.position = new Vector3(pos.x, pos.y, - 0.8f);
 
             if (Target == null)
             {
